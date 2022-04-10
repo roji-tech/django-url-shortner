@@ -1,6 +1,6 @@
 from .main_conf import *
-import django_heroku
-import dj_database_url
+# import django_heroku
+# import dj_database_url
 
 SECRET_KEY = 'pax!e5sxl*q&#_ic*m$*3#)#r)naw_4roumm@10x#iyg10c4zomq'
 
