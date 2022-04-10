@@ -1,0 +1,149 @@
+<head>
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    body,
+    section {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: "Lato", sans-serif;
+      line-height: 1.5;
+      color: #111;
+    }
+
+    main {
+      max-width: 720px;
+      width: 100%;
+      border: 2.5px solid #4e053054;
+      border-radius: 2.5px;
+      box-shadow: 0 20px 30px rgba(17, 17, 17, 0.274),
+        0 5px 5px rgba(17, 17, 17, 0.25);
+      background-image: linear-gradient(to top, #e771ff 0%, #550751 100%);
+    }
+
+    h1 {
+      padding: 1rem;
+      color: white;
+    }
+
+    #link,
+    #shorten {
+      font-family: inherit;
+      line-height: inherit;
+      color: inherit;
+      border: 0;
+      padding: 1rem;
+    }
+
+    #link {
+      box-sizing: border-box;
+      width: 100%;
+    }
+    #but_link {
+      position: relative;
+    }
+
+    #reset {
+      position: absolute;
+      background: hsla(0, 69%, 91%, 0.016);
+      height: 35px;
+      padding: 2px;
+      border: 0;
+      margin: 0;
+      top: 8px;
+      right: 0;
+      text-align: center;
+      width: 50px;
+      color: #550751;
+      box-shadow: 0 10px 15px rgba(17, 17, 17, 0.274),
+        0 5px 5px rgba(17, 17, 17, 0.25);
+    }
+
+    .buttons {
+      display: flex;
+    }
+
+    #shorten {
+      cursor: pointer;
+      flex: 1;
+      background-color: transparent;
+      color: white;
+      &:hover {
+        background-color: rgba(255, 255, 255, 0.5);
+      }
+    }
+
+    section {
+      min-height: 120px;
+      text-align: center;
+      background-color: white;
+    
+    @media screen {
+      
+    }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>
+      <i><b>Roji</b>Tech</i> URL Shortener
+    </h1>
+    <p style="color: aliceblue; text-align: center">
+      <b>Shorten your Long scary URL to a shorter lenght more readable one.</b>
+    </p>
+    <form id="post-form">
+      {% csrf_token %}
+      <div id="but_link">
+        <input
+          type="text"
+          name="link"
+          id="link"
+          required
+          placeholder="Enter your URL here"
+        />
+        <button id="reset" type="reset">Clear</button>
+      </div>
+      <div class="buttons">
+        <button style="text-shadow: 0 5px 5px #111" type="submit" id="shorten">
+          Click here to Shorten
+        </button>
+      </div>
+    </form>
+
+    <section id="section"><h2></h2></section>
+  </main>
+</body>
+
+<script
+  src="https://code.jquery.com/jquery-3.6.0.min.js"
+  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+  crossorigin="anonymous"
+></script>
+<script type="text/javascript">
+  $(document).on("submit", "#post-form", function (e) {
+    e.preventDefault();
+
+    $.ajax({
+      type: "POST",
+      url: "/create",
+      data: {
+        link: $("#link").val(),
+        csrfmiddlewaretoken: $("input[name=csrfmiddlewaretoken]").val(),
+      },
+      success: function (data) {
+        $("#section").html("localhost:8000/" + data);
+      },
+    });
+  });
+</script>
