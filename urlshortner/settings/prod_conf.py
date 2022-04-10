@@ -6,6 +6,8 @@ SECRET_KEY = 'pax!e5sxl*q&#_ic*m$*3#)#r)naw_4roumm@10x#iyg10c4zomq'
 
 DEBUG = True
 
+ALLOWED_HOSTS = ['*']
+
 DATABASES = {
     'default': dj_database_url.config()
 }
