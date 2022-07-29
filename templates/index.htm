@@ -182,26 +182,23 @@
         csrfmiddlewaretoken: $("input[name=csrfmiddlewaretoken]").val(),
       },
       success: function (data) {
-        $("#section").html("localhost:8000/" + data);
+        $("#section").html("https://awesome-urlshortner.herokuapp.com/" + data);
       },
     });
   });
 
   /* Get the text field */
   var copyText = document.getElementById("copy");
-  var h1 = document.getElementById("section").innerHTML;
+  var h1 = document.getElementById("section");
 
   copyText.addEventListener("click", () => {
     /* Select the text field */
-    alert(h1);
-    copyText.select();
-    copyText.setSelectionRange(0, 99999); /* For mobile devices */
 
     // /* Copy the text inside the text field */
-    navigator.clipboard.writeText(copyText.value);
+    navigator.clipboard.writeText(h1);
 
     /* Alert the copied text */
-    alert("Copied the text: " + copyText.value);
+    alert("Copied the text: " + h1.innerHTML);
   });
 </script>
 <!-- https://awesome-urlshortner.herokuapp.com -->
