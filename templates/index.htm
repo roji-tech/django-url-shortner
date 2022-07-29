@@ -152,7 +152,7 @@
         csrfmiddlewaretoken: $("input[name=csrfmiddlewaretoken]").val(),
       },
       success: function (data) {
-        $("#section").html("localhost:8000/" + data);
+        $("#section").html("https://awesome-urlshortner.herokuapp.com/" + data);
       },
     });
   });
