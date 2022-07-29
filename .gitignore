@@ -1,5 +1,5 @@
 .vscode
 data.sqlite3
 db.sqlite3
-urlshortner/settings/dev_conf.py
+urlshortner/settings/dev.py
 __pycache__

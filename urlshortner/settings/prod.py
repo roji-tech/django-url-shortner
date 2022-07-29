@@ -1,8 +1,8 @@
-from .main_conf import *
+from .main import *
 import django_on_heroku
 import dj_database_url
 
-SECRET_KEY = 'pax!e5sxl*q&#_ic*m$*3#)#r)naw_4roumm@10x#iyg10c4zomq'
+SECRET_KEY = os.environ["SECRET_KEY="]
 
 DEBUG = False
 
