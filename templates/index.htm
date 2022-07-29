@@ -28,7 +28,12 @@
       border-radius: 2.5px;
       box-shadow: 0 20px 30px rgba(17, 17, 17, 0.274),
         0 5px 5px rgba(17, 17, 17, 0.25);
-      background-image: linear-gradient(to top, #e771ff 0%, #bb39d4,  #550751 100%);
+      background-image: linear-gradient(
+        to top,
+        #e771ff 0%,
+        #bb39d4,
+        #550751 100%
+      );
     }
 
     h1 {
@@ -73,12 +78,6 @@
         0 5px 5px rgba(17, 17, 17, 0.25);
     }
 
-    #reset:active {
-      transform: scale(1.1);
-      background-color: #d400ff;
-      color: wheat;
-    }
-
     .buttons {
       display: flex;
     }
@@ -100,9 +99,37 @@
       min-height: 120px;
       text-align: center;
       background-color: white;
+      position: relative;
 
       @media screen {
       }
+    }
+
+    #copy {
+      position: absolute;
+      background: hsla(0, 69%, 91%, 0.016);
+      height: 35px;
+      padding: 2px;
+      border: 0;
+      margin: 0;
+      top: 50%;
+      right: 2%;
+      transform: translateY(-50%);
+      border-radius: 30px;
+      cursor: pointer;
+      font-weight: 1000;
+      text-align: center;
+      width: 50px;
+      color: #550751;
+      box-shadow: 0 10px 15px rgba(17, 17, 17, 0.274),
+        0 5px 5px rgba(17, 17, 17, 0.25);
+    }
+
+    #reset:active,
+    #copy:active {
+      transform: translateX(-5px);
+      background-color: #d400ff;
+      color: wheat;
     }
   </style>
 </head>
@@ -131,7 +158,10 @@
       </div>
     </form>
 
-    <section id="section"><h2></h2></section>
+    <section>
+      <p id="copy">copy</p>
+      <h2 id="section"></h2>
+    </section>
   </main>
 </body>
 
@@ -152,8 +182,26 @@
         csrfmiddlewaretoken: $("input[name=csrfmiddlewaretoken]").val(),
       },
       success: function (data) {
-        $("#section").html("https://awesome-urlshortner.herokuapp.com/" + data);
+        $("#section").html("localhost:8000/" + data);
       },
     });
   });
+
+  /* Get the text field */
+  var copyText = document.getElementById("copy");
+  var h1 = document.getElementById("section").innerHTML;
+
+  copyText.addEventListener("click", () => {
+    /* Select the text field */
+    alert(h1);
+    copyText.select();
+    copyText.setSelectionRange(0, 99999); /* For mobile devices */
+
+    // /* Copy the text inside the text field */
+    navigator.clipboard.writeText(copyText.value);
+
+    /* Alert the copied text */
+    alert("Copied the text: " + copyText.value);
+  });
 </script>
+<!-- https://awesome-urlshortner.herokuapp.com -->
