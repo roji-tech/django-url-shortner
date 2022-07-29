@@ -189,7 +189,7 @@
 
   /* Get the text field */
   var copyText = document.getElementById("copy");
-  var h1 = document.getElementById("section");
+  var h1 = document.getElementById("section").innerHTML;
 
   copyText.addEventListener("click", () => {
     /* Select the text field */
@@ -198,7 +198,7 @@
     navigator.clipboard.writeText(h1);
 
     /* Alert the copied text */
-    alert("Copied the text: " + h1.innerHTML);
+    alert("Copied the text: " + h1);
   });
 </script>
 <!-- https://awesome-urlshortner.herokuapp.com -->
